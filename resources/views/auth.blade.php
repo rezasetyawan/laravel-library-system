@@ -14,14 +14,16 @@
             <div class="w-[448px]">
                 <!-- login form -->
                 <div class="p-4 card rounded-md shadow-sm w-full">
-                    <form action="/login" method="post" class="w-full">
+                    <form action="/register" method="post" class="w-full">
                         @csrf
+                        <label for="name" class="block font-semibold mt-2 mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="block border p-1 rounded-md w-full">
                         <label for="email" class="block font-semibold mt-2 mb-2">Email</label>
                         <input type="email" id="email" name="email" class="block border p-1 rounded-md w-full">
                         <label for="password" class="block font-semibold mt-2 mb-2">Password</label>
                         <input type="password" id="password" name="password" class="block border p-1 rounded-md w-full">
                         <div class="mt-4">
-                            <button type="submit" class="w-full bg-blue-600 rounded-md p-2 text-white">Login</button>
+                            <button type="submit" class="w-full bg-blue-600 rounded-md p-2 text-white">Register</button>
                         </div>
                     </form>
                 </div>
