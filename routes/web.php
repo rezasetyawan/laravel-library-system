@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/books', [BookController::class,'index']);
+    Route::post('/admin/books', [BookController::class,'store']);
 });
 
 require __DIR__.'/auth.php';

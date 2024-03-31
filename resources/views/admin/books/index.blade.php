@@ -24,7 +24,6 @@
             <x-modal name="new-book-modal" :show="false" focusable>
                 <form method="post" class="p-6" enctype="multipart/form-data">
                     @csrf
-                    @method('delete')
                     <div>
                         <x-input-label for="title" :value="__('Judul Buku')" />
                         <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" required

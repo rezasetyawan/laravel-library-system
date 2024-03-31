@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BookController extends Controller
 {
@@ -18,7 +19,7 @@ class BookController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -28,7 +29,28 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => ['required'],
+            'description' => ['required'],
+            'author' => ['required'],
+            'publisher' => ['required'],
+            'publication_year' => ['integer', 'required'],
+            'publication_date' => ['date', 'required'],
+            'cover_img' => ['image', 'required'],
+            'isbn' => ['required'],
+            'page_count' => ['integer', 'required']
+        ]);
+
+
+        $coverImgPath = $request->file('cover_img')->store('book-cover-pictures', 'public');
+
+        $validatedData['cover_img'] = $coverImgPath;
+        $validatedData['category_id'] = 1;
+        $validatedData['slug'] = Str::slug($request->title);
+        // TODO: CHANGE CATEGORY ID, BASE ON USER INPUT
+        
+        Book::create($validatedData);
+        return redirect('/admin/books');
     }
 
     /**
