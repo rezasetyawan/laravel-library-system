@@ -35,4 +35,8 @@ class Book extends Model
     protected $casts = [
         'publication_date' => 'datetime',
     ];
+
+    public function category () {
+        return $this->belongsTo(BookCategory::class);
+    }
 }
