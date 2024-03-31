@@ -20,6 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->enum('role', ['superadmin', 'admin', 'user'])->default('user');
+            $table->string('username', 30)->unique();
         });
     }
 
