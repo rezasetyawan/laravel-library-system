@@ -24,7 +24,8 @@ class Book extends Model
         'isbn',
         'page_count',
         'publication_year',
-        'publication_date'
+        'publication_date',
+        'slug'
     ];
 
     /**
