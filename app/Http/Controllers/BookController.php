@@ -13,7 +13,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('admin.books.index');
+        $books = Book::all();
+        return view('admin.books.index', ['books' => $books]);
     }
 
     /**
@@ -48,7 +49,7 @@ class BookController extends Controller
         $validatedData['category_id'] = 1;
         $validatedData['slug'] = Str::slug($request->title);
         // TODO: CHANGE CATEGORY ID, BASE ON USER INPUT
-        
+
         Book::create($validatedData);
         return redirect('/admin/books');
     }
