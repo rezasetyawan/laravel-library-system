@@ -106,14 +106,14 @@
         </div>
         <div class="grid grid-cols-6 gap-3 mt-10">
             @foreach ($books as $book)
-                <div class="p-2 rounded-md shadow-sm border">
+                <a class="p-2 rounded-md shadow-sm border block" href="/admin/books/{{ $book->slug }}">
                     <div class="flex justify-center"> <img src="{{ asset('storage/' . $book->cover_img) }}"
                             alt="{{ $book->title }}" class="w-28 h-[10.5rem] overflow-hidden"></div>
                     <h2 class="font-semibold mt-2 ">{{ $book->title }}</h2>
                     <p class="text-sm text-muted line-clamp-3">
                         {{ $book->description }}
                     </p>
-                </div>
+                </a>
             @endforeach
         </div>
     </main>

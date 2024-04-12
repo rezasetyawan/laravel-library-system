@@ -30,8 +30,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/books', [BookController::class,'index']);
-    Route::post('/admin/books', [BookController::class,'store']);
+    Route::get('/admin/books', [BookController::class, 'index']);
+    Route::post('/admin/books', [BookController::class, 'store']);
+    // damn bro route model binding op bgt coeg
+    Route::get('/admin/books/{book:slug}', [BookController::class, 'show']);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

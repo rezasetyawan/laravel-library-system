@@ -59,7 +59,8 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        // damn bro route model binding op bgt coeg
+        return view('admin.books.show', ["book" => $book]);
     }
 
     /**
