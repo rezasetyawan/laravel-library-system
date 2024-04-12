@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/books', [BookController::class, 'index']);
     Route::post('/admin/books', [BookController::class, 'store']);
     // damn bro route model binding op bgt coeg
