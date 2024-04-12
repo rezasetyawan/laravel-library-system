@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/books', [BookController::class, 'store']);
     // damn bro route model binding op bgt coeg
     Route::get('/admin/books/{book:slug}', [BookController::class, 'show']);
+    Route::put('/admin/books/{book:slug}', [BookController::class, 'update']);
 });
 
 require __DIR__ . '/auth.php';

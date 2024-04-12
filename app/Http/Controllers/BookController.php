@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BookController extends Controller
@@ -76,7 +77,27 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => ['required'],
+            'description' => ['required'],
+            'author' => ['required'],
+            'publisher' => ['required'],
+            'publication_year' => ['integer', 'required'],
+            'publication_date' => ['date', 'required'],
+            'cover_img' => ['image', 'required'],
+            'isbn' => ['required'],
+            'page_count' => ['integer', 'required']
+        ]);
+
+        $validatedData['category_id'] = 1;
+        $validatedData['slug'] = Str::slug($request->title);
+        $coverImgPath = $request->file('cover_img')->store('book-cover-pictures', 'public');
+
+        $validatedData['cover_img'] = $coverImgPath;
+        Storage::disk('local')->delete($book->cover_img);
+
+        Book::where('id', $book->id)->update($validatedData);
+        return redirect($request->url());
     }
 
     /**
