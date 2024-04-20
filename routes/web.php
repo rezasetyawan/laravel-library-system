@@ -36,6 +36,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // damn bro route model binding op bgt coeg
     Route::get('/admin/books/{book:slug}', [BookController::class, 'show']);
     Route::put('/admin/books/{book:slug}', [BookController::class, 'update']);
+    Route::delete('/admin/books/{book:slug}', [BookController::class, 'destroy'])->name('books.destroy');
 });
 
 require __DIR__ . '/auth.php';

@@ -103,8 +103,17 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Book $book)
+    public function destroy(Request $request, Book $book)
     {
-        //
+        $queryParams = $request->query();
+        $softDeleteValue = filter_var($queryParams['softDelete'], FILTER_VALIDATE_BOOLEAN) ?? false;
+
+        if ($softDeleteValue) {
+            $book->forceDelete();
+            return redirect('/admin/books');
+        } else {
+            $book->delete();
+            return redirect('/admin/books');
+        }
     }
 }
