@@ -1,11 +1,9 @@
 <section class="space-y-6">
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-book-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+    <x-danger-button x-data=""
+        x-on:click.prevent="$dispatch('open-modal', 'confirm-book-deletion')">{{ __('Hapus Buku') }}</x-danger-button>
 
     <x-modal name="confirm-book-deletion" :show="$errors->bookDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('books.destroy') }}?softDelete=true" class="p-6">
+        <form method="post" action="{{ route('books.destroy', ['book' => $book]) }}?softDelete=false" class="p-6">
             @csrf
             @method('delete')
 
