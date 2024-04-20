@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookCategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Book;
@@ -37,6 +38,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/books/{book:slug}', [BookController::class, 'show']);
     Route::put('/admin/books/{book:slug}', [BookController::class, 'update']);
     Route::delete('/admin/books/{book:slug}', [BookController::class, 'destroy'])->name('books.destroy');
+
+    Route::get('/admin/book-categories', [BookCategoryController::class, 'index']);
 });
 
 require __DIR__ . '/auth.php';
