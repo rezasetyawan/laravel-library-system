@@ -1,7 +1,7 @@
 <x-app-layout>
     <div>
         @foreach ($categories as $category)
-            <a class="p-2 rounded-md shadow-sm border block" href="/admin/books/{{ $category->id }}">
+            <a class="p-2 rounded-md shadow-sm border block" href="/admin/book-categories/{{ $category->id }}">
                 <p>{{ $category->name }}</p>
                 <p>{{ $category->created_at }}</p>
                 <p>{{ $category->updated_at }}</p>

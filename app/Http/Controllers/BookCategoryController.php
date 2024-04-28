@@ -46,7 +46,7 @@ class BookCategoryController extends Controller
      */
     public function edit(BookCategory $bookCategory)
     {
-        //
+        return view('admin.book-categories.edit', ["category" => $bookCategory]);
     }
 
     /**

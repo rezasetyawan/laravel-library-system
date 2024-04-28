@@ -4,6 +4,7 @@ use App\Http\Controllers\BookCategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Book;
+use App\Models\BookCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/admin/books/{book:slug}', [BookController::class, 'destroy'])->name('books.destroy');
 
     Route::get('/admin/book-categories', [BookCategoryController::class, 'index']);
+    Route::get('/admin/book-categories/{bookCategory:id}', [BookCategoryController::class, 'edit']);
 });
 
 require __DIR__ . '/auth.php';
